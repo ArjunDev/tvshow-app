@@ -19,7 +19,11 @@ async function initialLoad(){
     const localData = JSON.parse(localStorage.getItem('urlQueryData')); 
     console.log(localData)
     renderData(localData); //passing localdata to render f
-    localStorage.clear();//to clear localstrorage once loaded
+    //localStorage.clear();
+  
+    window.addEventListener('beforeunload', () => 
+    localStorage.clear());
+    //to clear data stored in localstorage upon closing window/tab.
   }
   catch(err){
     console.error(err);
@@ -66,7 +70,9 @@ function renderData(data) {
   data.forEach(item => {
     const url = item.show.image.medium;
     const title = item.show.name;
-    const rating = item.show.rating.average;
+    //const rating = item.show.rating.average;
+    // if else using ternary opertor
+    const rating = item.show.rating.average ? item.show.rating.average : 'N/A';
     const movieList = document.createElement('div');
     movieList.classList.add('movies-list');
     movieList.innerHTML = 
@@ -74,6 +80,29 @@ function renderData(data) {
       <div class="movie-info">
       <h3>${title}</h3>
       <span>${rating}</span>
+      </div>`;
+    bodyContainer.appendChild(movieList);
+  });
+}
+
+function renderData(data) {
+  data.forEach(item => {
+    const url = item.show.image.medium;
+    const title = item.show.name;
+    //const rating = item.show.rating.average;
+    // if else using ternary opertor
+    const rating = item.show.rating.average ? item.show.rating.average : 'N/A';
+    const summary = item.show.summary;
+    const movieList = document.createElement('div');
+    movieList.classList.add('movies-list');
+    movieList.innerHTML = 
+      `<div class="img-summary-container">
+        <div class="summary"><p>${summary}</p></div>
+        <div class="img"><img src=${url}></img></div>
+      </div>
+      <div class="movie-info">
+        <p>${title}</p>
+        <span>${rating}</span>
       </div>`;
     bodyContainer.appendChild(movieList);
   });

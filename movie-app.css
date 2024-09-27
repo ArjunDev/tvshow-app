@@ -4,8 +4,7 @@
   box-sizing: border-box;
 }
 body{
-  color: rgba(255, 255, 255, 0.6);
-  background-color: #939a06a7;
+  background-color: #1e3a45;
   padding-left: 3px;
   padding-right: 3px;
 }
@@ -13,8 +12,12 @@ header{
   text-align: center;
   padding: 1rem;
 }
+h2{
+  font-size: medium;
+  color: rgba(240, 248, 255, 0.841);
+}
 .top-container{
-  background-color: #264653;
+  background-color: #14323e;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -54,10 +57,22 @@ header{
 }
 .body-container{
   display: flex;
-  gap: 8px;
+  gap: 15px;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+}
+.movies-list{
+  margin-top: 10px;
+  overflow: hidden;
+  background-color: #264653;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgb(2, 253, 6);
+}
+.movies-list:hover {
+  transition: 0.2s ease-in-out;
+  transform: scale(1.04);
+  cursor: pointer;
 }
 /* class is created dynamically in JS*/
 .movies-list.img {
@@ -66,19 +81,23 @@ header{
   height: 250px;
   border-radius: 8px;
   object-fit: fill;
+  position: absolute; /* Allows the image to be positioned freely */
+  z-index: 1; /* Image on top */
 }
-.movies-list{
-  margin-top: 10px;
+.summary{
+  display: none;
+  margin-top: 5px;
+  width: 199px;
+  height: 249px;
+  font-size: small;
   overflow: hidden;
-  background-color: #264653;
-  border-radius: 10px;
-  box-shadow: 2px 2px 4px rgb(153, 2, 253);
+  border-radius: 8px;
+  padding: 2px;
+  position: relative; /* Text is positioned normally */
+  z-index: 0; /* Text behind the image */
+  color: transparent; /* Hides the text visually */
 }
-.movies-list:hover {
-  transition: 0.2s ease-in-out;
-  transform: scale(1.04);
-  cursor: pointer;
-}
+
 /* class is created dynamically in JS*/
 .movie-info {
   color: rgba(227, 231, 235, 0.87);
@@ -87,18 +106,14 @@ header{
   padding: 5px;
   padding-right: 10px;
 }
-h3 {
+.movie-info p {
   font-size: small;
 }
-
-/*
 .footer {
-  position: relative;
-  width: 100vw;
+  width: 99vw;
   height: 50px;
   padding: 10px;
   border-radius: 5px;
   background-color: black;
   margin-top: 20px;
 }
-*/
